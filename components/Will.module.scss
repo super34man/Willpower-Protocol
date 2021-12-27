@@ -1,0 +1,45 @@
+.spinningLights {
+	position: relative;
+}
+
+.coinTotal {
+	width: 72px;
+	height: 72px;
+}
+
+.outerRing {
+  position: absolute;
+  height: 72px;
+  width: 72px;
+  background-image: linear-gradient(135deg, #FEED07 0%, #f32c09 5%, #FF7F83 15%, #4193e6 50%, #CCE0F4 100%);
+  border-radius: 50%;
+  
+  /*  Rotate  */
+  animation-duration: 2s;
+  animation-name: rotate;
+  animation-iteration-count: infinite;
+}
+
+.innerRing {
+  position: absolute;
+  height: 64px;
+  width: 64px;
+  background-image: linear-gradient(0deg, #fcbe16, #fffbec);
+  border-radius: 50%;
+
+	/*  Rotate  */
+  animation-duration: 2s;
+  animation-name: rotate;
+  animation-iteration-count: infinite;
+}
+
+.innerText {
+  position: absolute;
+  height: 64px;
+  width: 64px;
+}
+
+@keyframes rotate {
+	0% {transform:rotate(0deg);}
+	100% {transform:rotate(360deg);}
+}

@@ -1,0 +1,88 @@
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/utilities";
+
+$utilities: map-merge(
+  $utilities, (
+    "width": map-merge(
+      map-get($utilities, "width"),
+      ( responsive: true ),
+			(
+        values: map-merge(
+          map-get(map-get($utilities, "width"), "values"),
+          (10: 10%),
+        ),
+      ),
+    ),
+  )
+);
+
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.form-check-input:checked {
+	background-color: #dc3545;
+	border-color: pink;
+}
+
+.neonText {
+  color: rgb(0, 0, 0);
+  text-shadow:
+    0 0 2px rgb(60, 60, 60),
+    0 0 3px #fff,
+    0 0 4px #fff,
+    0 0 6px #fff,
+    0 0 8px rgb(255, 0, 0),
+    0 0 10px rgb(255, 0, 0),
+    0 0 13px rgb(255, 0, 0),
+    0 0 16px rgb(255, 8, 0);
+}
+
+.gradientText {
+	font-size: 1em;
+	font-weight: bold;
+  background: -webkit-linear-gradient(45deg, rgb(245, 0, 0) 40%, rgb(0, 255, 128));
+	background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradientBackground {
+	background-size: 600% 300%;
+	background-image: linear-gradient(to top right, #FF7F83 0%, #CCE0F4 50%, #FF7F83 100%);
+  transition: 0.5s;
+}
+.gradientBackground:hover {
+	background-position: right center;
+}
+
+.gradientBackgroundNoHover {
+	background-size: 300% 300%;
+	background-image: linear-gradient(to bottom left, #FF7F83 30%, #CCE0F4 50%, #FF7F83 100%);
+}
+
+.gradientButton {
+	background-size: 300% 300%;
+	background-image: linear-gradient(to right, #FF7F83 0%, #CCE0F4 50%, #FF7F83 100%);
+  transition: 0.5s;
+	font-weight: bold;
+}
+
+.gradientButton:hover {
+	background-position: right center;
+}
