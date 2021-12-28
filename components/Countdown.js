@@ -28,7 +28,7 @@ const Countdown = () => {
 
 	return (
 		<div className= { remainingTime.hours<1 ? "text-danger" : "" } >
-			{remainingTime.hours}h : {remainingTime.minutes}m : {remainingTime.seconds}s
+			{ remainingTime.hours + "h : " + remainingTime.minutes + "m : " + remainingTime.seconds + "s" }
 		</div>
 	)
 }

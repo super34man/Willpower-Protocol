@@ -1,9 +1,9 @@
 import styles from "./DailyButton.module.scss"
 
-const DailyButton = ({valuePerDay, task, dayofWeek, col}) => {
+const DailyButton = ({ valuePerDay, task, dayofWeek, col }) => {
 	return (
 		<button className={ task.completed[dayofWeek] ? "btn btn-danger position-relative" : "btn btn-outline-danger position-relative" }>
-			{task.days[dayofWeek] ? valuePerDay : 0}
+			{ task.days[dayofWeek] ? valuePerDay : 0 }
 			<span className="position-absolute top-0 start-100 translate-middle fa-stack">
 					<i className="fas fa-circle fa-stack-1x text-light"></i>
 					<i className={

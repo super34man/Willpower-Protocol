@@ -26,12 +26,12 @@ const Navbar = () => {
 					<ul className="navbar-nav me-auto mb-2 mb-md-0">
 						<li className="nav-item">
 							<Link href="/">
-								<a className="nav-link" aria-current="page">Home</a>
+								<a className="nav-link" aria-current="page">{ "Home" }</a>
 							</Link>
 						</li>
 						<li className="nav-item">
 							<Link href="/stats">
-								<a className="nav-link">Stats</a>
+								<a className="nav-link">{ "Stats" }</a>
 							</Link>
 						</li>
 						{/* <li className="nav-item">
@@ -45,10 +45,10 @@ const Navbar = () => {
 							</Link>
 						</li> */}
 					</ul>
-					{/* <span className={ isAuthenticated ? 'navbar-text me-2' : "d-none" }>{user.get('ethAddress')}</span> */}
-					<button className={ !isAuthenticated ? "btn btn-outline-danger me-2" : "d-none" } id="btn-login" onClick={authenticate}>MetaMask Login</button>
-					<button className={ !isAuthenticated ? "btn btn-outline-danger" : "d-none" } id="btn-wallet-connect" onClick={wcLogin}>Wallet Connect</button>
-					<button className={ isAuthenticated ? "btn btn-outline-danger" : "d-none" } id="btn-logout" onClick={logout}>Logout</button>
+					{/* <span className={ isAuthenticated ? 'navbar-text me-2' : "d-none" }>{ user.get('ethAddress') }</span> */}
+					<button className={ !isAuthenticated ? "btn btn-outline-danger me-2" : "d-none" } id="btn-login" onClick={authenticate}>{ "MetaMask Login" }</button>
+					<button className={ !isAuthenticated ? "btn btn-outline-danger" : "d-none" } id="btn-wallet-connect" onClick={wcLogin}>{ "Wallet Connect" }</button>
+					<button className={ isAuthenticated ? "btn btn-outline-danger" : "d-none" } id="btn-logout" onClick={logout}>{ "Logout" }</button>
 
 				</div>
 			</div>

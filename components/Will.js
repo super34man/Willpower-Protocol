@@ -50,15 +50,15 @@ const Will = () => {
 			<table className="table align-middle">
 				<thead>
 					<tr>
-						<th scope="col">Description of Habit</th>
-						<th className="text-center" scope="col">Value</th>
-						<th className="text-center" scope="col">{getDayofWeek(0, "name")}</th>
-						<th className="text-center" scope="col">{getDayofWeek(1, "name")}</th>
-						<th className="text-center" scope="col">{getDayofWeek(2, "name")}</th>
-						<th className="text-center" scope="col">{getDayofWeek(3, "name")}</th>
-						<th className="text-center" scope="col">{getDayofWeek(4, "name")}</th>
-						<th className="text-center" scope="col">{getDayofWeek(5, "name")}</th>
-						<th className="text-center" scope="col">{getDayofWeek(6, "name")}</th>
+						<th scope="col">{ "Description of Habit" }</th>
+						<th className="text-center" scope="col">{ "Value" }</th>
+						<th className="text-center" scope="col">{ getDayofWeek(0, "name") }</th>
+						<th className="text-center" scope="col">{ getDayofWeek(1, "name") }</th>
+						<th className="text-center" scope="col">{ getDayofWeek(2, "name") }</th>
+						<th className="text-center" scope="col">{ getDayofWeek(3, "name") }</th>
+						<th className="text-center" scope="col">{ getDayofWeek(4, "name") }</th>
+						<th className="text-center" scope="col">{ getDayofWeek(5, "name") }</th>
+						<th className="text-center" scope="col">{ getDayofWeek(6, "name") }</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -89,7 +89,7 @@ const Will = () => {
 								<div className={styles.outerRing}></div>
 								<div className={styles.innerRing}></div>
 								<div className={styles.innerText + " text-dark d-flex align-items-center justify-content-center"}>
-									<strong>{getSum().toFixed(4)}</strong>
+									<strong>{ getSum().toFixed(4) }</strong>
 								</div>
 							</div>
 						</td>
@@ -100,7 +100,7 @@ const Will = () => {
 				<Link href="/new-habit">
 					<button className="btn btn-danger">
 						<i className="fas fa-plus me-2"></i>
-						Add a new habit
+						{ "Add a new habit" }
 					</button>
 				</Link>
 			</div>

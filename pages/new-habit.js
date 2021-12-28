@@ -27,39 +27,39 @@ export default function NewHabit() {
 				<div className="col-lg-6 col-md-9">
 					<h3>How to Add a Habit</h3>
 					
-					<form onSubmit={addHabit}>
-						<h5 className="mt-4">Step 1 - What's your habit?</h5>
+					<form onSubmit={ addHabit }>
+						<h5 className="mt-4">{ "Step 1 - What's your habit?" }</h5>
 						<div>
 							<input type="text" className="form-control" id="description" placeholder="Habit Description" autoComplete="off" />
 						</div>
 
-						<h5 className="mt-4">Step 2 - Choose the days you'll perform this habit</h5>
+						<h5 className="mt-4">{ "Step 2 - Choose the days you'll perform this habit" }</h5>
 						<div className="form-check form-switch">
-							<label htmlFor="sunday" className="form-check-label">Sunday</label>
+							<label htmlFor="sunday" className="form-check-label">{ "Sunday" }</label>
 							<input type="checkbox" className="form-check-input" id="sunday" defaultChecked />
 						</div>
 						<div className="form-check form-switch">
-							<label htmlFor="monday" className="form-check-label">Monday</label>
+							<label htmlFor="monday" className="form-check-label">{ "Monday" }</label>
 							<input type="checkbox" className="form-check-input" id="monday" defaultChecked />
 						</div>
 						<div className="form-check form-switch">
-							<label htmlFor="tuesday" className="form-check-label">Tuesday</label>
+							<label htmlFor="tuesday" className="form-check-label">{ "Tuesday" }</label>
 							<input type="checkbox" className="form-check-input" id="tuesday" defaultChecked />
 						</div>
 						<div className="form-check form-switch">
-							<label htmlFor="wednesday" className="form-check-label">Wednesday</label>
+							<label htmlFor="wednesday" className="form-check-label">{ "Wednesday" }</label>
 							<input type="checkbox" className="form-check-input" id="wednesday" defaultChecked />
 						</div>
 						<div className="form-check form-switch">
-							<label htmlFor="thursday" className="form-check-label">Thursday</label>
+							<label htmlFor="thursday" className="form-check-label">{ "Thursday" }</label>
 							<input type="checkbox" className="form-check-input" id="thursday" defaultChecked />
 						</div>
 						<div className="form-check form-switch">
-							<label htmlFor="friday" className="form-check-label">Friday</label>
+							<label htmlFor="friday" className="form-check-label">{ "Friday" }</label>
 							<input type="checkbox" className="form-check-input" id="friday" defaultChecked />
 						</div>
 						<div className="form-check form-switch">
-							<label htmlFor="saturday" className="form-check-label">Saturday</label>
+							<label htmlFor="saturday" className="form-check-label">{ "Saturday" }</label>
 							<input type="checkbox" className="form-check-input" id="saturday" defaultChecked />
 						</div>
 
