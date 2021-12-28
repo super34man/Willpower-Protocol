@@ -83,7 +83,7 @@ const Will = () => {
 				</tbody>
 				<tfoot>
 					<tr>
-						<td colSpan={8} className="text-end"><h5>Today's Locked Value:</h5></td>
+						<td colSpan={8} className="text-end"><h5>{ "Today's Locked Value:" }</h5></td>
 						<td className="text-center align-middle">
 							<div className="m-auto d-flex align-items-center justify-content-center position-relative" style={{width:"72px", height:"72px"}}>
 								<div className={styles.outerRing}></div>

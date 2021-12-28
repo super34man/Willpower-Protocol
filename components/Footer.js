@@ -5,7 +5,7 @@ const Footer = () => {
 		<nav className="navbar fixed-bottom bg-dark text-secondary">
 			<div className="container-fluid">
 						<span className="navbar-text">
-							<i class="far fa-copyright me-2"></i>{ "2021 - " + new Date().getUTCFullYear() }
+							<i className="far fa-copyright me-2"></i>{ "2021 - " + new Date().getUTCFullYear() }
 						</span>
 						<Link href="/">
 							<a className="nav-link link-secondary">

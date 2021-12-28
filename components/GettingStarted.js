@@ -14,7 +14,7 @@ const GettingStarted = () => {
 						<figure>
 							<blockquote className="blockquote">
 								<p>{ "“Willpower is but the unflinching purpose to carry a task you set for yourself to fulfillment. " }
-									{ "If I set for myself a task, be it ever so trifling, I shall see it through. " }"
+									{ "If I set for myself a task, be it ever so trifling, I shall see it through. " }
 									{ "How else should I have the confidence in myself to do important things?”" }</p>
 							</blockquote>
 							<figcaption className="blockquote-footer">
