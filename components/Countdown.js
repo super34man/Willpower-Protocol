@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 
 const defaultRemainingTime = {
-	hours: '00',
-	minutes: '00',
-	seconds: '00'
+	hours: '--',
+	minutes: '--',
+	seconds: '--'
 }
 
 const Countdown = () => {
