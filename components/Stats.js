@@ -6,7 +6,7 @@ const loggedUser = testData.users[0]
 
 const Stats = () => {
 	return (
-		<div className="container-fluid bg-light">
+		<div className="container-fluid bg-light border-bottom border-black-50">
 			<div className="row row-cols-1 row-cols-lg-3 g-2 py-3">
 				<div className="col order-2 order-lg-1">
 				<div className="card h-100">
