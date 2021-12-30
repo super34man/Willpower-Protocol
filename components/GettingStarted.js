@@ -1,4 +1,4 @@
-const GettingStarted = () => {
+const GettingStarted = ({isAuth}) => {
 	return (
 		<div className="container-fluid gradientBackground text-dark mb-2 border-bottom border-black-50">
 			<div className="row text-center pb-1">
@@ -8,7 +8,7 @@ const GettingStarted = () => {
 					</span>
 				</a>
 			</div>
-			<div className="collapse" id="gettingStarted">
+			<div className={ isAuth ? "collapse" : "" } id="gettingStarted">
 				<div className="row p-4">
 					<figure>
 						<blockquote className="blockquote">

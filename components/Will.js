@@ -2,49 +2,63 @@ import { testData } from "../data/testData"
 import DailyButton from "./DailyButton"
 import Link from "next/link"
 import styles from "./Will.module.scss"
+import { useMoralis } from "react-moralis"
 
-const loggedUser = testData.users[0]
+import { useState, useEffect } from "react"
 
-const valuePerTask = loggedUser.treasuryAllocation / loggedUser.tasks.length
+const Will = ({remainingTime, newDay}) => {
+	const { isAuthenticated, authenticate, logout, user } = useMoralis();
 
-const weekdays = [
-	"Sun",
-	"Mon",
-	"Tues",
-	"Wed",
-	"Thur",
-	"Fri",
-	"Sat"
-]
+	// const Habits = Moralis.Object.extend("Habits");
+	// const query = new Moralis.Query(Habits);
+	// query.equalTo("ownerName", "Aegon");
+	// const results = await query.find();
 
-function getDayofWeek(daysAgo, nameOrNum) {
-	const dateObj = new Date()
-	const pastDate = dateObj.getUTCDate() - daysAgo				// - 1 for correct array address
-	dateObj.setDate(pastDate)
-	if (nameOrNum == "num") {
-		return dateObj.getUTCDay()
-	} else {
-		return weekdays[dateObj.getUTCDay()]
-	}
-}
+	useEffect(() => {
+		console.log('something')
+	}, [newDay])
 
-function getSum() {
-	let sumOfFinalDay = 0.0000;
-	const dayofWeek = getDayofWeek(6, "num");
+	const loggedUser = testData.users[0]
 
-	{loggedUser.tasks.map((task) => {
-		const count = task.days.filter(Boolean).length;
-		const valuePerDay = valuePerTask / count;
-		if (task.days[dayofWeek] && task.completed[dayofWeek]) {
-			sumOfFinalDay += valuePerDay
+	const valuePerTask = loggedUser.treasuryAllocation / loggedUser.tasks.length
+
+	const weekdays = [
+		"Sun",
+		"Mon",
+		"Tues",
+		"Wed",
+		"Thur",
+		"Fri",
+		"Sat"
+	]
+
+	function getDayofWeek(daysAgo, nameOrNum) {
+		const dateObj = new Date()
+		const pastDate = dateObj.getUTCDate() - daysAgo				// - 1 for correct array address
+		dateObj.setDate(pastDate)
+		if (nameOrNum == "num") {
+			return dateObj.getUTCDay()
 		} else {
-			sumOfFinalDay -= valuePerDay
+			return weekdays[dateObj.getUTCDay()]
 		}
-	})};
-	return sumOfFinalDay;
-}
+	}
 
-const Will = () => {
+	function getSum() {
+		let sumOfFinalDay = 0.0000;
+		const dayofWeek = getDayofWeek(6, "num");
+
+		{loggedUser.tasks.map((task) => {
+			const count = task.days.filter(Boolean).length;
+			const valuePerDay = valuePerTask / count;
+			if (task.days[dayofWeek] && task.completed[dayofWeek]) {
+				sumOfFinalDay += valuePerDay
+			} else {
+				sumOfFinalDay -= valuePerDay
+			}
+		})};
+		return sumOfFinalDay;
+	}
+
 	return (
 		<div className="container-fluid">
 			<div className="table-responsive">

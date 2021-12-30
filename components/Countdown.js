@@ -1,13 +1,7 @@
 import { useState, useEffect } from "react";
 
-const defaultRemainingTime = {
-	hours: '--',
-	minutes: '--',
-	seconds: '--'
-}
-
-const Countdown = () => {
-	const [remainingTime, setRemainingTime] = useState(defaultRemainingTime)
+const Countdown = ({remainingTime, setRemainingTime, newDay, setNewDay}) => {
+	// const [remainingTime, setRemainingTime] = useState(defaultRemainingTime)
 
 	useEffect(() => {
 		const intervalId = setInterval(() => {
@@ -18,17 +12,30 @@ const Countdown = () => {
 
 	function updateRemainingTime() {
 		const date = new Date()
-		const timeLeft = {
-			hours: 23 - date.getUTCHours(),
-			minutes: (59 - date.getUTCMinutes()).toString().padStart(2, '0'),
-			seconds: (59 - date.getUTCSeconds()).toString().padStart(2, '0')
+		// let timeLeft = {
+		// 	hours: 23 - date.getUTCHours(),
+		// 	minutes: (59 - date.getUTCMinutes()).toString().padStart(2, '0'),
+		// 	seconds: (59 - date.getUTCSeconds()).toString().padStart(2, '0')
+		// }
+		let timeLeft = {
+			hours: "0",
+			minutes: "00",
+			seconds: (59 - date.getUTCSeconds()).toString().padStart(2, '0'),
+			string: ''
 		}
+		timeLeft.string = timeLeft.hours + "h : " + timeLeft.minutes + "m : " + timeLeft.seconds + "s"
 		setRemainingTime(timeLeft)
+		if (remainingTime.string == "0h : 00m : 00s") {
+			setNewDay(true)
+		}
+		else if (newDay == true) {
+			setNewDay(false)
+		}
 	}
 
 	return (
 		<div className= { remainingTime.hours<1 ? "text-danger" : "" } >
-			{ remainingTime.hours + "h : " + remainingTime.minutes + "m : " + remainingTime.seconds + "s" }
+			{ remainingTime.string }
 		</div>
 	)
 }

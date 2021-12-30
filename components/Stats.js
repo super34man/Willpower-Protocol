@@ -1,10 +1,17 @@
 import { testData } from "../data/testData"
 import Countdown from "./Countdown"
 import styles from './Stats.module.scss'
+import { useEffect } from "react"
 
 const loggedUser = testData.users[0]
 
-const Stats = () => {
+const Stats = ({remainingTime, setRemainingTime, newDay, setNewDay}) => {
+	useEffect(() => {
+		if (newDay == true) {
+			
+		}
+	}, [newDay])
+
 	return (
 		<div className="container-fluid bg-light border-bottom border-black-50">
 			<div className="row row-cols-1 row-cols-lg-3 g-2 py-3">
@@ -12,7 +19,12 @@ const Stats = () => {
 				<div className="card h-100">
 							<div className="card-body p-2 text-center">
 								<span className="card-text fw-light">{ "Countdown to Next Payout" }</span>
-								<h5><Countdown></Countdown></h5>
+								<h5><Countdown
+									remainingTime={remainingTime}
+									setRemainingTime={setRemainingTime}
+									newDay={newDay}
+									setNewDay={setNewDay}
+								></Countdown></h5>
 								<span className="card-text fw-light">{ "My Latest Payout" }</span>
 								<h5 className="card-title">{ loggedUser.lastPayout }</h5>
 							</div>

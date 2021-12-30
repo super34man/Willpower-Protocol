@@ -1,16 +1,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { useMoralis } from 'react-moralis'
 
 import logo from '../public/Navbar 130h bg-dark.png'
+import Login from './Login'
 
 const Navbar = () => {
-	const { isAuthenticated, authenticate, logout, user } = useMoralis();
-
-	function wcLogin () {
-		authenticate({ provider: "walletconnect" })
-	}
-
 	return (
 		<nav className="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
 			<div className="container-fluid">
@@ -45,11 +39,7 @@ const Navbar = () => {
 							</Link>
 						</li> */}
 					</ul>
-					{/* <span className={ isAuthenticated ? 'navbar-text me-2' : "d-none" }>{ user.get('ethAddress') }</span> */}
-					<button className={ !isAuthenticated ? "btn btn-outline-danger me-2" : "d-none" } id="btn-login" onClick={authenticate}>{ "MetaMask Login" }</button>
-					<button className={ !isAuthenticated ? "btn btn-outline-danger" : "d-none" } id="btn-wallet-connect" onClick={wcLogin}>{ "Wallet Connect" }</button>
-					<button className={ isAuthenticated ? "btn btn-outline-danger" : "d-none" } id="btn-logout" onClick={logout}>{ "Logout" }</button>
-
+					<Login></Login>
 				</div>
 			</div>
 		</nav>
