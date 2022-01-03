@@ -2,15 +2,17 @@ import { testData } from "../data/testData"
 import Countdown from "./Countdown"
 import styles from './Stats.module.scss'
 import { useEffect } from "react"
+import { useMoralis, useMoralisQuery } from "react-moralis"
 
 const loggedUser = testData.users[0]
 
 const Stats = ({remainingTime, setRemainingTime, newDay, setNewDay}) => {
-	useEffect(() => {
-		if (newDay == true) {
-			
-		}
-	}, [newDay])
+	const { user } = useMoralis();
+	// useEffect(() => {
+	// 	if (newDay == true) {
+
+	// 	}
+	// }, [newDay])
 
 	return (
 		<div className="container-fluid bg-light border-bottom border-black-50">
@@ -26,7 +28,7 @@ const Stats = ({remainingTime, setRemainingTime, newDay, setNewDay}) => {
 									setNewDay={setNewDay}
 								></Countdown></h5>
 								<span className="card-text fw-light">{ "My Latest Payout" }</span>
-								<h5 className="card-title">{ loggedUser.lastPayout }</h5>
+								<h5 className="card-title">{ user.get('lastPayout') }</h5>
 							</div>
 					</div>
 				</div>
@@ -36,7 +38,7 @@ const Stats = ({remainingTime, setRemainingTime, newDay, setNewDay}) => {
 							<span className="card-text fw-light">{ "Stake Now" }</span>
 							<p><button className="btn btn-danger text-dark gradientButton">{ "Deposit" }</button><button className="btn btn-light ms-4">Withdraw</button></p>
 							<span className="card-text fw-light">{ "My Account Value" }</span>
-							<h5 className="card-title">{ loggedUser.treasuryAllocation }</h5>
+							<h5 className="card-title">{ user.get('allocation') }</h5>
 						</div>
 					</div>
 				</div>

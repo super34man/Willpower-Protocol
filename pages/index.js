@@ -2,7 +2,7 @@ import Will from "../components/Will"
 import GettingStarted from "../components/GettingStarted"
 import Stats from "../components/Stats"
 import { useState, useEffect } from "react";
-import { useMoralis } from "react-moralis";
+import { useMoralis, useMoralisQuery } from "react-moralis";
 
 const defaultRemainingTime = {
 	hours: '--',
@@ -17,7 +17,9 @@ export default function Home() {
 
 	const { isAuthenticated } = useMoralis();
 
-	if (!isAuthenticated) return <GettingStarted isAuth={false}></GettingStarted>
+	if (!isAuthenticated) return (
+		<GettingStarted isAuth={false}></GettingStarted>
+	)
 
   return (
     <div>
@@ -30,10 +32,11 @@ export default function Home() {
 					setNewDay={setNewDay}
 				></Stats>
         <Will
-					remainingTime={remainingTime}
 					newDay={newDay}
 				></Will>
       </main>
     </div>
   )
 }
+
+

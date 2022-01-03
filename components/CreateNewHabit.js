@@ -9,21 +9,15 @@ function CreateNewHabit() {
 	const [habit, setHabit] = useState({
 		address: user.get('ethAddress'),
 		description: "",
-		daysAgo0: true,
-		daysAgo1: true,
-		daysAgo2: true,
-		daysAgo3: true,
-		daysAgo4: true,
-		daysAgo5: true,
-		daysAgo6: true,
-		completedDaysAgo0: false,
-		completedDaysAgo1: false,
-		completedDaysAgo2: false,
-		completedDaysAgo3: false,
-		completedDaysAgo4: false,
-		completedDaysAgo5: false,
-		completedDaysAgo6: false
+		days: [true, true, true, true, true, true, true],
+		completed: [false, false, false, false, false, false, false]
 	});
+
+	const dayCheckToggled = (e, day) => {
+		let days = [...habit.days]
+		days[day] = e.target.checked
+		setHabit({...habit, ...{days: days}})
+	}
 
 	const addHabit = (e) => {
 		e.preventDefault();
@@ -60,31 +54,31 @@ function CreateNewHabit() {
 						<h5 className="mt-4">{ "Step 2 - Choose the days you'll perform this habit" }</h5>
 						<div className="form-check form-switch">
 							<label htmlFor="sunday" className="form-check-label">{ "Sunday" }</label>
-							<input type="checkbox" className="form-check-input" id="sunday" defaultChecked onClick={(e) => setHabit({...habit, ...{daysAgo0: e.target.checked}})} />
+							<input type="checkbox" className="form-check-input" id="sunday" defaultChecked onClick={(e) => dayCheckToggled(e, 0)} />
 						</div>
 						<div className="form-check form-switch">
 							<label htmlFor="monday" className="form-check-label">{ "Monday" }</label>
-							<input type="checkbox" className="form-check-input" id="monday" defaultChecked onClick={(e) => setHabit({...habit, ...{daysAgo1: e.target.checked}})} />
+							<input type="checkbox" className="form-check-input" id="monday" defaultChecked onClick={(e) => dayCheckToggled(e, 0)} />
 						</div>
 						<div className="form-check form-switch">
 							<label htmlFor="tuesday" className="form-check-label">{ "Tuesday" }</label>
-							<input type="checkbox" className="form-check-input" id="tuesday" defaultChecked onClick={(e) => setHabit({...habit, ...{daysAgo2: e.target.checked}})} />
+							<input type="checkbox" className="form-check-input" id="tuesday" defaultChecked onClick={(e) => dayCheckToggled(e, 0)} />
 						</div>
 						<div className="form-check form-switch">
 							<label htmlFor="wednesday" className="form-check-label">{ "Wednesday" }</label>
-							<input type="checkbox" className="form-check-input" id="wednesday" defaultChecked onClick={(e) => setHabit({...habit, ...{daysAgo3: e.target.checked}})} />
+							<input type="checkbox" className="form-check-input" id="wednesday" defaultChecked onClick={(e) => dayCheckToggled(e, 0)} />
 						</div>
 						<div className="form-check form-switch">
 							<label htmlFor="thursday" className="form-check-label">{ "Thursday" }</label>
-							<input type="checkbox" className="form-check-input" id="thursday" defaultChecked onClick={(e) => setHabit({...habit, ...{daysAgo4: e.target.checked}})} />
+							<input type="checkbox" className="form-check-input" id="thursday" defaultChecked onClick={(e) => dayCheckToggled(e, 0)} />
 						</div>
 						<div className="form-check form-switch">
 							<label htmlFor="friday" className="form-check-label">{ "Friday" }</label>
-							<input type="checkbox" className="form-check-input" id="friday" defaultChecked onClick={(e) => setHabit({...habit, ...{daysAgo5: e.target.checked}})} />
+							<input type="checkbox" className="form-check-input" id="friday" defaultChecked onClick={(e) => dayCheckToggled(e, 0)} />
 						</div>
 						<div className="form-check form-switch">
 							<label htmlFor="saturday" className="form-check-label">{ "Saturday" }</label>
-							<input type="checkbox" className="form-check-input" id="saturday" defaultChecked onClick={(e) => setHabit({...habit, ...{daysAgo6: e.target.checked}})} />
+							<input type="checkbox" className="form-check-input" id="saturday" defaultChecked onClick={(e) => dayCheckToggled(e, 0)} />
 						</div>
 
 						<h5 className="mt-4">Step 3 - Submit your new habit</h5>

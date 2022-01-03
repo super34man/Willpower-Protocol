@@ -8,7 +8,7 @@ const GettingStarted = ({isAuth}) => {
 					</span>
 				</a>
 			</div>
-			<div className={ isAuth ? "collapse" : "" } id="gettingStarted">
+			<div className={ isAuth ? "collapse" : "collapse show" } id="gettingStarted">
 				<div className="row p-4">
 					<figure>
 						<blockquote className="blockquote">

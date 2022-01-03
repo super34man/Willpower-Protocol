@@ -1,26 +1,52 @@
 import { testData } from "../data/testData"
-import DailyButton from "./DailyButton"
 import Link from "next/link"
 import styles from "./Will.module.scss"
-import { useMoralis } from "react-moralis"
+import { useMoralis, useMoralisQuery } from "react-moralis"
 
 import { useState, useEffect } from "react"
+import WillTable from "./WillTable"
 
-const Will = ({remainingTime, newDay}) => {
-	const { isAuthenticated, authenticate, logout, user } = useMoralis();
-
-	// const Habits = Moralis.Object.extend("Habits");
-	// const query = new Moralis.Query(Habits);
-	// query.equalTo("ownerName", "Aegon");
-	// const results = await query.find();
-
-	useEffect(() => {
-		console.log('something')
-	}, [newDay])
+const Will = ({newDay}) => {
+	const { user } = useMoralis();
 
 	const loggedUser = testData.users[0]
+	// const valuePerTask = loggedUser.treasuryAllocation / loggedUser.tasks.length
+	
 
-	const valuePerTask = loggedUser.treasuryAllocation / loggedUser.tasks.length
+	const { data, error, isLoading } = useMoralisQuery(
+		"Habits",
+		query =>
+			query
+				.equalTo("address", user.get('ethAddress')),
+				[],
+				{
+					live: true,
+				},
+	);
+
+	const valuePerHabit = user.get('allocation') / data.length
+
+
+	function getSum() {
+		let sumOfFinalDay = 0.0000;
+		const dayofWeek = getDayofWeek(6, "num");
+
+		loggedUser.tasks.map((task) => {
+			const count = task.days.filter(Boolean).length;
+			const valuePerDay = valuePerHabit / count;
+			if (task.days[dayofWeek] && task.completed[dayofWeek]) {
+				sumOfFinalDay += valuePerDay
+			} else {
+				sumOfFinalDay -= valuePerDay
+			}
+		});
+		return sumOfFinalDay;
+	}
+
+	// useEffect(() => {
+	// 	console.log('something')
+	// }, [newDay])
+
 
 	const weekdays = [
 		"Sun",
@@ -43,22 +69,6 @@ const Will = ({remainingTime, newDay}) => {
 		}
 	}
 
-	function getSum() {
-		let sumOfFinalDay = 0.0000;
-		const dayofWeek = getDayofWeek(6, "num");
-
-		{loggedUser.tasks.map((task) => {
-			const count = task.days.filter(Boolean).length;
-			const valuePerDay = valuePerTask / count;
-			if (task.days[dayofWeek] && task.completed[dayofWeek]) {
-				sumOfFinalDay += valuePerDay
-			} else {
-				sumOfFinalDay -= valuePerDay
-			}
-		})};
-		return sumOfFinalDay;
-	}
-
 	return (
 		<div className="container-fluid">
 			<div className="table-responsive">
@@ -77,24 +87,7 @@ const Will = ({remainingTime, newDay}) => {
 						</tr>
 					</thead>
 					<tbody>
-						{loggedUser.tasks.map((task, index) => {
-							const count = task.days.filter(Boolean).length;
-							const valuePerDay = valuePerTask / count;
-
-							return (
-								<tr key={index}>
-									<th scope="row">{task.description}</th>
-									<td className="text-center">{valuePerTask}</td>
-									<td className="text-center"><DailyButton valuePerDay={valuePerDay} task={task} dayofWeek={getDayofWeek(0, "num")} col={0}></DailyButton></td>
-									<td className="text-center"><DailyButton valuePerDay={valuePerDay} task={task} dayofWeek={getDayofWeek(1, "num")} col={1}></DailyButton></td>
-									<td className="text-center"><DailyButton valuePerDay={valuePerDay} task={task} dayofWeek={getDayofWeek(2, "num")} col={2}></DailyButton></td>
-									<td className="text-center"><DailyButton valuePerDay={valuePerDay} task={task} dayofWeek={getDayofWeek(3, "num")} col={3}></DailyButton></td>
-									<td className="text-center"><DailyButton valuePerDay={valuePerDay} task={task} dayofWeek={getDayofWeek(4, "num")} col={4}></DailyButton></td>
-									<td className="text-center"><DailyButton valuePerDay={valuePerDay} task={task} dayofWeek={getDayofWeek(5, "num")} col={5}></DailyButton></td>
-									<td className="text-center"><DailyButton valuePerDay={valuePerDay} task={task} dayofWeek={getDayofWeek(6, "num")} col={6}></DailyButton></td>
-								</tr>
-							)
-						})}
+						<WillTable newDay={newDay} getDayofWeek={getDayofWeek} data={data} isLoading={isLoading} valuePerHabit={valuePerHabit}></WillTable>
 					</tbody>
 					<tfoot>
 						<tr className="d-none d-md-table-row">
