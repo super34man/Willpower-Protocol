@@ -1,9 +1,11 @@
 import { useMoralis } from "react-moralis"
 import { useState, useEffect } from "react";
+import { useRouter } from 'next/router'
 import Link from "next/link";
 
 function CreateNewHabit() {
 	const { Moralis, user } = useMoralis();
+	const router = useRouter()
 
 	const [saveStatus, setSaveStatus] = useState({status: "", description: ""});
 	const [habit, setHabit] = useState({
@@ -32,6 +34,7 @@ function CreateNewHabit() {
 			() => {
 				console.log('success');
 				setSaveStatus({status: 'success', description: habit.description});
+				router.push('/')
 			},
 			(error) => {
 				console.log(error.message);

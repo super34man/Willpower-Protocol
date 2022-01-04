@@ -9,10 +9,6 @@ import WillTable from "./WillTable"
 const Will = ({newDay}) => {
 	const { user } = useMoralis();
 
-	const loggedUser = testData.users[0]
-	// const valuePerTask = loggedUser.treasuryAllocation / loggedUser.tasks.length
-	
-
 	const { data, error, isLoading } = useMoralisQuery(
 		"Habits",
 		query =>
@@ -23,25 +19,6 @@ const Will = ({newDay}) => {
 					live: true,
 				},
 	);
-
-	const valuePerHabit = user.get('allocation') / data.length
-
-
-	function getSum() {
-		let sumOfFinalDay = 0.0000;
-		const dayofWeek = getDayofWeek(6, "num");
-
-		loggedUser.tasks.map((task) => {
-			const count = task.days.filter(Boolean).length;
-			const valuePerDay = valuePerHabit / count;
-			if (task.days[dayofWeek] && task.completed[dayofWeek]) {
-				sumOfFinalDay += valuePerDay
-			} else {
-				sumOfFinalDay -= valuePerDay
-			}
-		});
-		return sumOfFinalDay;
-	}
 
 	// useEffect(() => {
 	// 	console.log('something')
@@ -58,7 +35,9 @@ const Will = ({newDay}) => {
 		"Sat"
 	]
 
-	function getDayofWeek(daysAgo, nameOrNum) {
+	const valuePerHabit = user.get('allocation') / data.length
+
+	const getDayofWeek = (daysAgo, nameOrNum) => {
 		const dateObj = new Date()
 		const pastDate = dateObj.getUTCDate() - daysAgo				// - 1 for correct array address
 		dateObj.setDate(pastDate)
@@ -67,6 +46,24 @@ const Will = ({newDay}) => {
 		} else {
 			return weekdays[dateObj.getUTCDay()]
 		}
+	}
+
+	const getSum = () => {
+		let sumOfFinalDay = 0.0000;
+		const dayofWeek = getDayofWeek(6, "num");
+
+		data.map((habit) => {
+			const completed = habit.get('completed')
+			const days = habit.get('days')
+			const count = days.filter(Boolean).length;
+			const valuePerDay = valuePerHabit / count;
+			if (days[dayofWeek] && completed[dayofWeek]) {
+				sumOfFinalDay += valuePerDay
+			} else {
+				sumOfFinalDay -= valuePerDay
+			}
+		});
+		return sumOfFinalDay;
 	}
 
 	return (

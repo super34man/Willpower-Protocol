@@ -3,8 +3,24 @@ import styles from "./DailyButton.module.scss"
 const DailyButton = ({ valuePerDay, habit, dayofWeek, col }) => {
 	const completed = habit.get('completed')
 	const days = habit.get('days')
+
+	const dailyToggle = (e) => {
+		completed[dayofWeek] = !completed[dayofWeek]
+		habit.set('completed', completed);
+
+		habit.save()
+		.then(
+			() => {
+				console.log();
+			},
+			(error) => {
+				console.log(error.message);
+			}
+		);
+	}
+
 	return (
-		<button className={ completed[dayofWeek] ? "btn btn-danger position-relative" : "btn btn-outline-danger position-relative" }>
+		<button onClick={(e) => dailyToggle(e)} className={ completed[dayofWeek] ? "btn btn-danger position-relative" : "btn btn-outline-danger position-relative" }>
 			{ days[dayofWeek] ? +parseFloat(valuePerDay).toFixed(4) : 0 }
 			<span className="position-absolute top-0 start-100 translate-middle fa-stack">
 					<i className="fas fa-circle fa-stack-1x text-light"></i>

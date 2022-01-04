@@ -15,7 +15,7 @@ function WillTable({newDay, getDayofWeek, data, isLoading, valuePerHabit}) {
 
 			return (
 				<tr key={index}>
-					<th scope="row">{habit.description}</th>
+					<th scope="row">{habit.get('description')}</th>
 					<td className="text-center">{+parseFloat(valuePerHabit.toFixed(4))}</td>
 					<td className="text-center"><DailyButton valuePerDay={valuePerDay} habit={habit} dayofWeek={getDayofWeek(0, "num")} col={0}></DailyButton></td>
 					<td className="text-center"><DailyButton valuePerDay={valuePerDay} habit={habit} dayofWeek={getDayofWeek(1, "num")} col={1}></DailyButton></td>
