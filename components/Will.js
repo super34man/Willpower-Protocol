@@ -39,12 +39,13 @@ const Will = ({newDay}) => {
 
 	const getDayofWeek = (daysAgo, nameOrNum) => {
 		const dateObj = new Date()
-		const pastDate = dateObj.getUTCDate() - daysAgo				// - 1 for correct array address
-		dateObj.setDate(pastDate)
+		let tempDate = new Date()
+		const pastDate = dateObj.getUTCDate() - daysAgo
+		tempDate.setUTCDate(pastDate)
 		if (nameOrNum == "num") {
-			return dateObj.getUTCDay()
+			return tempDate.getUTCDay()
 		} else {
-			return weekdays[dateObj.getUTCDay()]
+			return weekdays[tempDate.getUTCDay()]
 		}
 	}
 
@@ -59,7 +60,7 @@ const Will = ({newDay}) => {
 			const valuePerDay = valuePerHabit / count;
 			if (days[dayofWeek] && completed[dayofWeek]) {
 				sumOfFinalDay += valuePerDay
-			} else {
+			} else if (days[dayofWeek] ) {
 				sumOfFinalDay -= valuePerDay
 			}
 		});
@@ -88,9 +89,9 @@ const Will = ({newDay}) => {
 					</tbody>
 					<tfoot>
 						<tr className="d-none d-md-table-row">
-							<td colSpan={8} className="text-end"><h5>{ "Today's Locked Value:" }</h5></td>
+							<td colSpan={8} className="text-end"><h5>{ "Locked Value for " + getDayofWeek(6, "name") + ":" }</h5></td>
 							<td className="text-center align-middle">
-								<div className="m-auto d-flex align-items-center justify-content-center position-relative" style={{width:"72px", height:"72px"}}>
+								<div className="m-auto d-flex align-items-center justify-content-center position-relative" style={{width:"110px", height:"84px"}}>
 									<div className={styles.outerRing}></div>
 									<div className={styles.innerRing}></div>
 									<div className={styles.innerText + " text-dark d-flex align-items-center justify-content-center"}>
@@ -102,12 +103,12 @@ const Will = ({newDay}) => {
 					</tfoot>
 				</table>
 			</div>
-			<div className="d-md-none d-flex align-items-center justify-content-end me-2 mt-2">
-				<div className="text-right me-2">
-					<h5>{ `Today's Locked Value:` }</h5>
+			<div className="d-md-none d-flex align-items-center justify-content-end me-3 mt-2">
+				<div className="text-right">
+					<h5>{ "Locked Value for " + getDayofWeek(6, "name") + ":" }</h5>
 				</div>
 				<div className="text-center align-middle">
-					<div className="m-auto d-flex align-items-center justify-content-center position-relative" style={{width:"72px", height:"72px"}}>
+					<div className="m-auto d-flex align-items-center justify-content-center position-relative" style={{width:"110px", height:"84px"}}>
 						<div className={styles.outerRing}></div>
 						<div className={styles.innerRing}></div>
 						<div className={styles.innerText + " text-dark d-flex align-items-center justify-content-center"}>

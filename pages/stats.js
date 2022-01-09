@@ -1,4 +1,5 @@
 import Link from "next/link"
+import TestCloud from "../components/TestCloud"
 
 export default function Stats() {
   return (

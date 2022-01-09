@@ -29,8 +29,8 @@ const Login = () => {
 
 	return (
 		<div className="d-flex align-items-center">
-			<i className="navbar-text me-2 fas fa-id-badge fa-2x"></i>
-			<span className='navbar-text me-3'>{ getShortAddress() }</span>
+			<i className="navbar-text me-2 gradientText fas fa-id-badge fa-2x"></i>
+			<span className='navbar-text me-3 gradientText'>{ getShortAddress() }</span>
 			<button className="btn btn-outline-danger" id="btn-logout" onClick={logout}>{ "Logout" }</button>
 		</div>
 	)

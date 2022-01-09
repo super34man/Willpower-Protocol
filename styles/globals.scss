@@ -35,6 +35,18 @@ a {
   box-sizing: border-box;
 }
 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .form-check-input:checked {
 	background-color: #dc3545;
 	border-color: pink;
@@ -54,9 +66,7 @@ a {
 }
 
 .gradientText {
-	font-size: 1em;
-	font-weight: bold;
-  background: -webkit-linear-gradient(45deg, rgb(245, 0, 0) 40%, rgb(0, 255, 128));
+  background: -webkit-linear-gradient(45deg, #FF7F83 40%, #CCE0F4);
 	background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
