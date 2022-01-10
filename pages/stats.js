@@ -16,6 +16,7 @@ export default function Stats() {
 					</Link>
 					{ "server to see our plans and submit your ideas." }
 				</p>
+				<TestCloud></TestCloud>
 			</span>
 		</div>
 	)

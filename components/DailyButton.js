@@ -11,7 +11,7 @@ const DailyButton = ({ valuePerDay, habit, dayofWeek, col }) => {
 		habit.save()
 		.then(
 			() => {
-				console.log();
+				// console.log();
 			},
 			(error) => {
 				console.log(error.message);

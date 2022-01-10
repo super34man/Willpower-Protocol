@@ -32,7 +32,7 @@ function CreateNewHabit() {
 		habits.save(habit)
 		.then(
 			() => {
-				console.log('success');
+				// console.log('success');
 				setSaveStatus({status: 'success', description: habit.description});
 				router.push('/')
 			},
