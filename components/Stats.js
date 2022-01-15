@@ -31,8 +31,8 @@ const Stats = ({remainingTime, setRemainingTime, newDay, setNewDay}) => {
 		fetch().then(() => {
 			let newAllocation = Number(user.get('allocation')) + Number(depositAmount)
 			setUserData({allocation: newAllocation})
-			let newTotalValue = Number(dailyStats[0].attributes.totalValue) + Number(depositAmount)
-			dailyStats[0].set('totalValue', newTotalValue)
+			let newTotalAllocation = Number(dailyStats[0].attributes.totalAllocation) + Number(depositAmount)
+			dailyStats[0].set('totalAllocation', newTotalAllocation)
 			dailyStats[0].save()
 		})
 	}
@@ -130,9 +130,9 @@ const Stats = ({remainingTime, setRemainingTime, newDay, setNewDay}) => {
 					<div className="card h-100">
 						<div className="card-body p-2 text-center">
 							<span className="card-text fw-light">{ "Total Value Locked" }</span>
-							<h5 className="card-title">{ dailyStats[0].attributes.totalValue + ' ROP' }</h5>
+							<h5 className="card-title">{ dailyStats[0].attributes.totalAllocation.toFixed(4) + ' ROP' }</h5>
 							<span className="card-text fw-light">{ "Total Value of Latest Payout" }</span>
-							<h5 className="card-title">{ dailyStats[1].attributes.valueLosers + ' ROP' }</h5>
+							<h5 className="card-title">{ dailyStats[1].attributes.totalDistribution.toFixed(4) + ' ROP' }</h5>
 						</div>
 					</div>
 				</div>
