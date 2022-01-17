@@ -1,13 +1,18 @@
 Moralis.Cloud.define("payoutDev", async (request) => {
-	//request.params {dayofWeek, dateObj, totalAllocation, totalLost,	sumOfFinalDay, totalWonAllocation, numHabits, mappedUsers}
-	const logger = Moralis.Cloud.getLogger();
+  //request.params {dayofWeek, dateObj, totalAllocation, totalLost,	sumOfFinalDay, totalWonAllocation, numHabits, mappedUsers}
+  const logger = Moralis.Cloud.getLogger();
 
-	const devPayout = Math.abs(request.params.totalLost * 0.07);
+  const devPayout = Math.abs(request.params.totalLost * 0.07);
 
-	const totalDistribution = Math.abs(request.params.totalLost) - devPayout;
+  const totalDistribution = Math.abs(request.params.totalLost) - devPayout;
 
-	// transact to dev wallet
+  const distributionPercentage = totalDistribution / request.params.totalLost;
 
-	return {devPayout: devPayout, totalDistribution: totalDistribution}
-	
+  // transact to dev wallet
+
+  return {
+    devPayout: devPayout,
+    totalDistribution: totalDistribution,
+    distributionPercentage: distributionPercentage,
+  };
 });
