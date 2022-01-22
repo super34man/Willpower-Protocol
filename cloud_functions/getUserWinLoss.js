@@ -1,5 +1,6 @@
 Moralis.Cloud.define("getUserWinLoss", async (request) => {
   // request.params {dayofWeek, dateObj, allocation, address}
+  const logger = Moralis.Cloud.getLogger();
 
   const thisUser = {
     allocation: request.params.allocation,
@@ -21,9 +22,14 @@ Moralis.Cloud.define("getUserWinLoss", async (request) => {
     const valuePerDay = valuePerHabit / count;
     if (days[request.params.dayofWeek] && completed[request.params.dayofWeek]) {
       sumOfFinalDay += valuePerDay;
-    } else if (days[request.params.dayofWeek]) {
+    } else if (
+      days[request.params.dayofWeek] &&
+      request.params.dateObj >= habit.get("createdAt")
+    ) {
       sumOfFinalDay -= valuePerDay;
     }
+    // logger.info("createdAt: " + habit.get("createdAt"));
+    // logger.info("date: " + request.params.dateObj);
   });
 
   return { sumOfFinalDay: sumOfFinalDay, numHabits: habits.length };

@@ -1,0 +1,31 @@
+.lightGradientButton {
+  background-size: 300% 300%;
+  background-image: linear-gradient(
+    to right,
+    #ffced0 0%,
+    #cce0f4 50%,
+    #ffced0 100%
+  );
+  transition: 0.5s;
+  font-weight: bold;
+}
+
+.lightGradientButton:hover {
+  background-position: right center;
+}
+
+.darkGradientButton {
+  background-size: 300% 300%;
+  background-image: linear-gradient(
+    to right,
+    #ff1b22 0%,
+    #cce0f4 50%,
+    #ff1b22 100%
+  );
+  transition: 0.5s;
+  font-weight: bold;
+}
+
+.darkGradientButton:hover {
+  background-position: right center;
+}

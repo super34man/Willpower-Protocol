@@ -3,7 +3,13 @@ Moralis.Cloud.define("updateDailyStats", async (request) => {
   const logger = Moralis.Cloud.getLogger();
 
   const DailyStat = Moralis.Object.extend("DailyStats");
-  let dailyStat = new DailyStat();
+  // let dailyStat = new DailyStat();
+
+  const DailyStats = Moralis.Object.extend("DailyStats");
+  const query = new Moralis.Query(DailyStats);
+  query.descending("createdAt");
+  query.limit(1);
+  const dailyStat = await query.first();
 
   dailyStat
     .save({

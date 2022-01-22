@@ -26,7 +26,7 @@ Moralis.Cloud.define("updateUsers", async (request) => {
 
           await query.get(userStats.objectId, { useMasterKey: true }).then(
             (youser) => {
-              logger.info(JSON.stringify(youser));
+              // logger.info(JSON.stringify(youser));
               youser.save(
                 {
                   allocation: userStats.newAllocation,

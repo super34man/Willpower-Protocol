@@ -50,48 +50,44 @@ Moralis.Cloud.job("createNewUserAndHabits", async (request) => {
           days: randomDays(),
         };
         tempHabit.completed = randomCompletion(tempHabit.days);
-        // return tempHabit;
-
-        // return "here";
-        // habit.address = address;
-        // habit.description = "Habit";
-        // habit.days = randomDays();
-        // habit.completed = randomCompletion(habit.days);
         let Habits = Moralis.Object.extend("Habits");
         let habits = new Habits();
-        // console.log(JSON.stringify(habit));
-        // logger.info(JSON.stringify(habit));
-        // habits.setACL(new Moralis.ACL(user.getACL()));
 
         habits.save(tempHabit).then(() => {
           return tempHabit;
         }),
           (error) => {
             return error;
-            // console.log(error.message);
-            // logger.info(error.message);
           };
       } catch (err) {
         return err;
-        // logger.info(err.message);
-        // console.log(err.message);
       }
     })
   );
-  // const blah = addHabits;
-  // return await JSON.stringify(blah);
+
   user.set("username", address);
   user.set("password", address);
   user.set("ethAddress", address);
   user.set("allocation", allocation);
   user.set("lastPayout", lastPayout);
-  try {
-    let newUser = await user.signUp();
-    // let updatedHabits = addHabits;
 
-    // logger.info(
-    //   JSON.stringify({ newUser: newUser, updatedHabits: Habits })
-    // );
+  try {
+    // let newUser = await user.signUp();
+    let newUser = await user.signUp().then(async (user) => {
+      const DailyStats = Moralis.Object.extend("DailyStats");
+      const query = new Moralis.Query(DailyStats);
+      query.descending("createdAt");
+      query.limit(1);
+      const dailyStats = await query.first();
+      const totalAllocation = await dailyStats.get("totalAllocation");
+      const userAllocation = await user.get("allocation");
+      const newAllocation = totalAllocation + userAllocation;
+      dailyStats.set("totalAllocation", newAllocation);
+      const numberHabits = await dailyStats.get("numberHabits");
+      const newNumberHabits = numberHabits + numHabits;
+      dailyStats.set("numberHabits", newNumberHabits);
+      await dailyStats.save();
+    });
 
     return { newUser: newUser, updatedHabits: addHabits };
   } catch (error) {

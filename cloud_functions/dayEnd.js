@@ -25,12 +25,10 @@ Moralis.Cloud.job("dayEnd", async () => {
     // params {dayofWeek, dateObj, totalAllocation, totalLost,	sumOfFinalDay, totalWonAllocation, numHabits, devPayout, totalDistribution, distributionPercentage, mappedUsers}
     const updatedUsers = await Moralis.Cloud.run("updateUsers", params);
     params = { ...params, ...updatedUsers };
-    logger.info(JSON.stringify(params));
+    // logger.info(JSON.stringify(params));
 
     logger.info("dayEnd completed");
   } catch (err) {
     logger.info("dayEnd: " + err);
   }
-
-  // TODO - iterate through users and update allocation and habit completion
 });
